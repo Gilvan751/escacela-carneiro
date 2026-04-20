@@ -1,0 +1,14 @@
+baseURL = "https://escacela.netlify.app/"
+languageCode = "pt-br"
+title = "Escacela Carneiro - Consultoria Fitness Online"
+
+[params]
+  trainerName = "ESCACELA CARNEIRO"
+  trainerInitials = "EC"
+  trainerTitle = "Consultoria Fitness Online"
+  trainerBio1 = "Tenho mais de 17 anos de experiência com prescrição de treinamento em academia e já prescrevi mais de 10 mil planilhas."
+  trainerBio2 = "Todos os programas da minha consultoria fitness online são baseados na ciência e na experimentação prática. Não perderemos tempo com o que não dá resultado."
+  trainerCREF = "Personal trainer registrado no Conselho Federal de Educação Física."
+  whatsapp = "https://wa.me/5566992415525"
+  email = "consultoria@escacela.com.br"
+  phone = "+55 66 99241-5525"

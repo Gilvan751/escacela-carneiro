@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ .Site.Title }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            orange: { 500: '#f97316', 600: '#ea580c' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* ── Utilitários base ── */
+    .line-clamp-4 {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ── Scroll suave ── */
+    html { scroll-behavior: smooth; }
+
+    /* ── Fade-up ao entrar na viewport ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Revelação do hero letra a letra ── */
+    .hero-word {
+      display: inline-block;
+    }
+    .hero-word span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 0.5s forwards;
+    }
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Texto laranja com gradiente animado ── */
+    .text-gradient-animate {
+      background: linear-gradient(90deg, #f97316, #facc15, #f97316);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 3s linear infinite;
+    }
+    @keyframes gradientShift {
+      to { background-position: 200% center; }
+    }
+
+    /* ── Parallax hero ── */
+    .parallax-bg {
+      will-change: transform;
+    }
+
+    /* ── Hover 3D nos cards ── */
+    .card-3d {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transform-style: preserve-3d;
+    }
+    .card-3d:hover {
+      transform: perspective(800px) rotateX(3deg) rotateY(-3deg) translateY(-6px);
+      box-shadow: 0 20px 40px rgba(249,115,22,0.15);
+    }
+
+    /* ── Underline animado nos links do menu ── */
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #f97316;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* ── Contador animado ── */
+    .counter { display: inline-block; }
+
+    /* ── Pulse no botão WhatsApp ── */
+    .btn-pulse {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+      50%       { box-shadow: 0 0 0 12px rgba(34,197,94,0); }
+    }
+
+    /* ── Barra de progresso ── */
+    .skill-bar { transition: width 1.2s ease-in-out; }
+  </style>
+</head>
+<body class="min-h-screen bg-black text-white">
+  {{ block "main" . }}{{ end }}
+
+  <script>
+    // ── Reveal ao scroll ──
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ── Parallax no hero ──
+    const parallaxBg = document.querySelector('.parallax-bg');
+    if (parallaxBg) {
+      window.addEventListener('scroll', () => {
+        parallaxBg.style.transform = `translateY(${window.scrollY * 0.35}px)`;
+      }, { passive: true });
+    }
+
+    // ── Contador animado ──
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target);
+      const duration = 1800;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = Math.floor(current).toLocaleString('pt-BR') + (el.dataset.suffix || '');
+      }, 16);
+    }
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCounter(e.target);
+          counterObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // ── Hero: revelação letra a letra ──
+    document.querySelectorAll('.hero-word').forEach((word, wi) => {
+      const text = word.textContent;
+      word.innerHTML = '';
+      [...text].forEach((char, ci) => {
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.style.animationDelay = `${wi * 0.3 + ci * 0.04}s`;
+        word.appendChild(span);
+      });
+    });
+  </script>
+</body>
+</html>

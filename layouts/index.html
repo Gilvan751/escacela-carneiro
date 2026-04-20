@@ -1,0 +1,519 @@
+{{ define "main" }}
+{{ $p := .Site.Params }}
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#" class="flex items-center space-x-2">
+        <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+          <span class="text-white font-bold text-lg">{{ $p.trainerInitials }}</span>
+        </div>
+        <div>
+          <p class="font-bold text-white leading-tight">{{ $p.trainerName }}</p>
+          <p class="text-xs text-gray-400">{{ $p.trainerTitle }}</p>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#acompanhamento" class="text-gray-300 hover:text-orange-500 transition-colors">Acompanhamento</a>
+        <a href="#como-funciona" class="text-gray-300 hover:text-orange-500 transition-colors nav-link">Como funciona?</a>
+        <a href="#depoimentos" class="text-gray-300 hover:text-orange-500 transition-colors nav-link">Depoimentos</a>
+        <a href="{{ $p.whatsapp }}" target="_blank" class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition-colors">Contratar agora</a>
+      </nav>
+      <button class="md:hidden text-gray-300" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-gray-800">
+    <nav class="px-4 py-4 space-y-4">
+      <a href="#acompanhamento" class="block text-gray-300 hover:text-orange-500">Acompanhamento</a>
+      <a href="#como-funciona" class="block text-gray-300 hover:text-orange-500">Como funciona?</a>
+      <a href="#depoimentos" class="block text-gray-300 hover:text-orange-500">Depoimentos</a>
+      <a href="{{ $p.whatsapp }}" target="_blank" class="block bg-orange-500 text-white px-4 py-2 rounded-full text-center">Contratar agora</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Seção 1: Hero -->
+<section class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+  <div class="absolute inset-0 opacity-30 parallax-bg">
+    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1920&h=1080&fit=crop" alt="Hero background" class="w-full h-full object-cover"/>
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-8">
+        <h1 class="text-5xl md:text-7xl font-black text-white leading-tight">
+          <span class="hero-word">RESULTADOS</span><br/>
+          <span class="hero-word text-gradient-animate">DEFINITIVOS</span>
+        </h1>
+        <p class="text-xl text-gray-300 max-w-lg">
+          Acompanhamento presencial e individual com quem realmente entende do seu corpo e dos seus objetivos.
+        </p>
+        <a href="#como-funciona" class="inline-block bg-white text-black font-bold px-8 py-4 rounded-full hover:bg-gray-200 transition-colors text-lg">
+          QUERO COMEÇAR
+        </a>
+      </div>
+      <div class="hidden lg:block">
+        <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=800&h=600&fit=crop" alt="Fitness training" class="rounded-2xl shadow-2xl"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 2: Sobre Mim -->
+<section class="py-20 bg-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <img src="/img/escacela.jpg.png" alt="{{ $p.trainerName }}" class="rounded-2xl shadow-xl w-full max-w-md mx-auto lg:max-w-none object-cover"/>
+        <div class="border-l-4 border-gray-300 pl-4">
+          <p class="text-gray-600 italic">{{ $p.trainerCREF }}</p>
+        </div>
+      </div>
+      <div class="space-y-6">
+        <p class="text-orange-500 font-semibold uppercase tracking-wider">Sobre mim</p>
+        <h2 class="text-4xl font-black text-gray-900">{{ $p.trainerName }}</h2>
+        <div class="w-16 h-1 bg-orange-500"></div>
+        <p class="text-lg text-gray-600 leading-relaxed reveal">{{ $p.trainerBio1 }}</p>
+        <p class="text-lg text-gray-600 leading-relaxed reveal">{{ $p.trainerBio2 }}</p>
+
+        <!-- Contadores animados -->
+        <div class="grid grid-cols-3 gap-4 py-4 reveal">
+          <div class="text-center">
+            <p class="text-3xl font-black text-orange-500"><span class="counter" data-target="17" data-suffix="+">0</span></p>
+            <p class="text-xs text-gray-500 mt-1">Anos de experiência</p>
+          </div>
+          <div class="text-center border-x border-gray-200">
+            <p class="text-3xl font-black text-orange-500"><span class="counter" data-target="10000" data-suffix="+">0</span></p>
+            <p class="text-xs text-gray-500 mt-1">Planilhas prescritas</p>
+          </div>
+          <div class="text-center">
+            <p class="text-3xl font-black text-orange-500"><span class="counter" data-target="90" data-suffix="+">0</span></p>
+            <p class="text-xs text-gray-500 mt-1">Avaliações 5 estrelas</p>
+          </div>
+        </div>
+        <a href="{{ $p.whatsapp }}" target="_blank" class="inline-flex items-center bg-green-500 text-white font-bold px-8 py-4 rounded-full hover:bg-green-600 transition-colors space-x-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.867-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <span>TIRE SUAS DÚVIDAS</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 3: Como eu vou te ajudar -->
+<section class="py-20 bg-black">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center space-y-6 mb-16">
+      <h2 class="text-4xl md:text-5xl font-black text-white">Como eu vou te ajudar</h2>
+      <div class="w-16 h-1 bg-orange-500 mx-auto"></div>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+        Com o meu acompanhamento você terá um treino de acordo com os seus objetivos, disponibilidade e levando em conta todo o seu histórico de treinamento.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="group cursor-pointer">
+        <div class="overflow-hidden rounded-t-xl">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop" alt="Emagrecimento" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"/>
+        </div>
+        <div class="bg-white p-6 rounded-b-xl">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Emagrecimento</h3>
+          <a href="#contratar" class="text-orange-500 font-semibold hover:text-orange-600">Saiba como →</a>
+        </div>
+      </div>
+      <div class="group cursor-pointer">
+        <div class="overflow-hidden rounded-t-xl">
+          <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&h=300&fit=crop" alt="Hipertrofia" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"/>
+        </div>
+        <div class="bg-white p-6 rounded-b-xl">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Hipertrofia</h3>
+          <a href="#contratar" class="text-orange-500 font-semibold hover:text-orange-600">Saiba como →</a>
+        </div>
+      </div>
+      <div class="group cursor-pointer">
+        <div class="overflow-hidden rounded-t-xl">
+          <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&h=300&fit=crop" alt="Definição muscular" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"/>
+        </div>
+        <div class="bg-white p-6 rounded-b-xl">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Definição muscular</h3>
+          <a href="#contratar" class="text-orange-500 font-semibold hover:text-orange-600">Saiba como →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 4 (antiga 5): Acompanhamento Presencial e Individual -->
+<section id="acompanhamento" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-8">
+        <div>
+          <p class="text-orange-500 font-semibold uppercase tracking-wider mb-2">Diferencial</p>
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
+            Acompanhamento<br/>
+            <span class="text-orange-500">presencial</span> e<br/>
+            individual
+          </h2>
+          <p class="text-xl text-gray-600 mt-4">
+            Atenção 100% focada em você. Cada treino, cada série, cada evolução.
+          </p>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex items-center space-x-3">
+            <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-gray-700">Treino 100% personalizado para o seu corpo e objetivo</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-gray-700">Correção de postura e execução em tempo real</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-gray-700">Evolução monitorada a cada sessão</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-gray-700">Motivação e suporte direto do profissional</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-gray-700">Adaptação imediata conforme sua resposta ao treino</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-gray-700">Resultados mais rápidos com segurança e eficiência</span>
+          </li>
+        </ul>
+        <a href="{{ $p.whatsapp }}" target="_blank" class="inline-block bg-orange-500 text-white font-bold px-8 py-4 rounded-full hover:bg-orange-600 transition-colors text-lg">
+          QUERO ESSE ACOMPANHAMENTO
+        </a>
+      </div>
+      <div class="relative">
+        <img src="/img/treino-presencial.png" alt="Acompanhamento presencial" class="rounded-2xl shadow-2xl w-full object-cover min-h-96 h-full" style="min-height: 480px; object-fit: cover; object-position: center;"/>
+        <div class="absolute -bottom-6 -left-6 bg-orange-500 text-white p-6 rounded-2xl shadow-xl hidden md:block">
+          <p class="text-3xl font-black">100%</p>
+          <p class="text-sm font-semibold">Individual</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 5 (antiga 6): Como Contratar -->
+<section id="como-funciona" class="py-20 bg-gray-900">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="space-y-6 mb-12">
+      <p class="text-orange-500 font-semibold uppercase tracking-wider">É simples assim</p>
+      <h2 class="text-4xl md:text-5xl font-black text-white">Como contratar</h2>
+      <div class="w-16 h-1 bg-orange-500 mx-auto"></div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      <div class="text-center space-y-4 p-6 reveal">
+        <div class="w-40 h-40 mx-auto rounded-2xl overflow-hidden shadow-lg shadow-orange-500/20">
+          <img src="/img/imagematendendotelefone.png" alt="Fale comigo" class="w-full h-full object-cover"/>
+        </div>
+        <h3 class="text-xl font-bold text-white">1. Fale comigo</h3>
+        <p class="text-gray-400">Mande uma mensagem no WhatsApp. Vou entender seus objetivos e tirar todas as suas dúvidas.</p>
+      </div>
+      <div class="text-center space-y-4 p-6 reveal" style="transition-delay:0.15s">
+        <div class="w-40 h-40 mx-auto rounded-2xl overflow-hidden shadow-lg shadow-orange-500/20">
+          <img src="/img/imagemavaliacao.png" alt="Avaliação física" class="w-full h-full object-cover"/>
+        </div>
+        <h3 class="text-xl font-bold text-white">2. Avaliação física</h3>
+        <p class="text-gray-400">Realizamos uma avaliação completa para montar o treino ideal para o seu perfil e histórico.</p>
+      </div>
+      <div class="text-center space-y-4 p-6 reveal" style="transition-delay:0.3s">
+        <div class="w-40 h-40 mx-auto rounded-2xl overflow-hidden shadow-lg shadow-orange-500/20">
+          <img src="/img/imagemtreinamento.png" alt="Comece a evoluir" class="w-full h-full object-cover"/>
+        </div>
+        <h3 class="text-xl font-bold text-white">3. Comece a evoluir</h3>
+        <p class="text-gray-400">Treinos presenciais e individuais com acompanhamento total. Você foca nos resultados, eu cuido do resto.</p>
+      </div>
+    </div>
+
+    <!-- CTA persuasivo -->
+    <div class="bg-black rounded-3xl p-10 space-y-6 border border-gray-800">
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+        Cada dia sem treino é um dia a menos de resultado. Não espere o momento perfeito — ele nunca vai chegar sozinho. O primeiro passo é o mais importante, e ele começa com uma mensagem.
+      </p>
+      <p class="text-white text-xl font-bold">Sua transformação começa hoje.</p>
+      <a href="{{ $p.whatsapp }}" target="_blank" class="inline-flex items-center bg-green-500 text-white font-bold px-10 py-5 rounded-full hover:bg-green-600 transition-colors text-xl space-x-3 shadow-lg shadow-green-500/30 btn-pulse">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.867-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span>FALAR COM {{ $p.trainerName }}</span>
+      </a>
+      <p class="text-gray-500 text-sm">Resposta rápida • Sem compromisso</p>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 6: Especialidades -->
+<section class="py-20 bg-gray-950" style="background-color: #0a0a0a;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center space-y-4 mb-16">
+      <p class="text-orange-500 font-semibold uppercase tracking-wider">Expertise</p>
+      <h2 class="text-4xl md:text-5xl font-black text-white">Minhas especialidades</h2>
+      <div class="w-16 h-1 bg-orange-500 mx-auto"></div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="skills-grid">
+      <!-- Card 1 -->
+      <div class="skill-card rounded-2xl p-6 border border-white/10 transition-all duration-300 hover:-translate-y-2"
+           style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
+        <div class="flex items-center space-x-4 mb-5">
+          <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center text-2xl">🏋️</div>
+          <div>
+            <h3 class="text-white font-bold text-lg">Musculação</h3>
+            <p class="text-gray-400 text-sm">Hipertrofia e força</p>
+          </div>
+        </div>
+        <div class="w-full bg-white/10 rounded-full h-2 mb-1">
+          <div class="skill-bar bg-orange-500 h-2 rounded-full" data-width="98" style="width:0%"></div>
+        </div>
+        <p class="text-right text-orange-500 text-sm font-bold">98%</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="skill-card rounded-2xl p-6 border border-white/10 transition-all duration-300 hover:-translate-y-2"
+           style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
+        <div class="flex items-center space-x-4 mb-5">
+          <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center text-2xl">🔥</div>
+          <div>
+            <h3 class="text-white font-bold text-lg">Emagrecimento</h3>
+            <p class="text-gray-400 text-sm">Perda de gordura</p>
+          </div>
+        </div>
+        <div class="w-full bg-white/10 rounded-full h-2 mb-1">
+          <div class="skill-bar bg-orange-500 h-2 rounded-full" data-width="95" style="width:0%"></div>
+        </div>
+        <p class="text-right text-orange-500 text-sm font-bold">95%</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="skill-card rounded-2xl p-6 border border-white/10 transition-all duration-300 hover:-translate-y-2"
+           style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
+        <div class="flex items-center space-x-4 mb-5">
+          <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center text-2xl">🧘</div>
+          <div>
+            <h3 class="text-white font-bold text-lg">Reabilitação</h3>
+            <p class="text-gray-400 text-sm">Treino terapêutico</p>
+          </div>
+        </div>
+        <div class="w-full bg-white/10 rounded-full h-2 mb-1">
+          <div class="skill-bar bg-orange-500 h-2 rounded-full" data-width="90" style="width:0%"></div>
+        </div>
+        <p class="text-right text-orange-500 text-sm font-bold">90%</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="skill-card rounded-2xl p-6 border border-white/10 transition-all duration-300 hover:-translate-y-2"
+           style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
+        <div class="flex items-center space-x-4 mb-5">
+          <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center text-2xl">🥗</div>
+          <div>
+            <h3 class="text-white font-bold text-lg">Nutrição Esportiva</h3>
+            <p class="text-gray-400 text-sm">Orientação alimentar</p>
+          </div>
+        </div>
+        <div class="w-full bg-white/10 rounded-full h-2 mb-1">
+          <div class="skill-bar bg-orange-500 h-2 rounded-full" data-width="85" style="width:0%"></div>
+        </div>
+        <p class="text-right text-orange-500 text-sm font-bold">85%</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="skill-card rounded-2xl p-6 border border-white/10 transition-all duration-300 hover:-translate-y-2"
+           style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
+        <div class="flex items-center space-x-4 mb-5">
+          <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center text-2xl">⚡</div>
+          <div>
+            <h3 class="text-white font-bold text-lg">Condicionamento</h3>
+            <p class="text-gray-400 text-sm">Performance e resistência</p>
+          </div>
+        </div>
+        <div class="w-full bg-white/10 rounded-full h-2 mb-1">
+          <div class="skill-bar bg-orange-500 h-2 rounded-full" data-width="93" style="width:0%"></div>
+        </div>
+        <p class="text-right text-orange-500 text-sm font-bold">93%</p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="skill-card rounded-2xl p-6 border border-white/10 transition-all duration-300 hover:-translate-y-2"
+           style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
+        <div class="flex items-center space-x-4 mb-5">
+          <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center text-2xl">👴</div>
+          <div>
+            <h3 class="text-white font-bold text-lg">Terceira Idade</h3>
+            <p class="text-gray-400 text-sm">Treino para longevidade</p>
+          </div>
+        </div>
+        <div class="w-full bg-white/10 rounded-full h-2 mb-1">
+          <div class="skill-bar bg-orange-500 h-2 rounded-full" data-width="92" style="width:0%"></div>
+        </div>
+        <p class="text-right text-orange-500 text-sm font-bold">92%</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Animação das barras ao entrar na viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const bars = entry.target.querySelectorAll('.skill-bar');
+        bars.forEach(bar => {
+          setTimeout(() => {
+            bar.style.transition = 'width 1.2s ease-in-out';
+            bar.style.width = bar.dataset.width + '%';
+          }, 100);
+        });
+        // fade-up nos cards
+        const cards = entry.target.querySelectorAll('.skill-card');
+        cards.forEach((card, idx) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(30px)';
+          setTimeout(() => {
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, idx * 100);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  const grid = document.getElementById('skills-grid');
+  if (grid) observer.observe(grid);
+</script>
+
+<!-- Seção 7: Depoimentos -->
+<section id="depoimentos" class="py-20 bg-black">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center space-y-6 mb-16">
+      <h2 class="text-4xl md:text-5xl font-black text-white">Depoimentos</h2>
+      <div class="flex justify-center space-x-1">
+        <svg class="w-6 h-6 text-orange-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-6 h-6 text-orange-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-6 h-6 text-orange-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-6 h-6 text-orange-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-6 h-6 text-orange-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <p class="text-gray-300 max-w-2xl mx-auto">
+        <span class="text-orange-500 font-bold">Classificação 5 estrelas</span> baseada em mais de 90 avaliações. Veja o que os alunos estão falando.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl p-6 card-3d reveal" style="transition-delay:0s">
+        <p class="text-gray-600 text-sm mb-4 line-clamp-4">"Comecei o acompanhamento há menos de um mês e estou gostando muito. O Escacela é muito atencioso, sempre responde rápido e com embasamento. De fato senti que foi uma série personalizada de acordo com as minhas necessidades."</p>
+        <div class="flex items-center space-x-3">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Cristiane França" class="w-10 h-10 rounded-full object-cover"/>
+          <div>
+            <p class="font-bold text-gray-900 text-sm">Cristiane França</p>
+            <p class="text-gray-500 text-xs">Aluna</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl p-6 card-3d reveal" style="transition-delay:0.15s">
+        <p class="text-gray-600 text-sm mb-4 line-clamp-4">"Fiz o primeiro mês de treino com ele e adorei. Me passou um treino criativo e dinâmico e sempre esteve disponível para tirar dúvidas. Gostei e renovei para mais meses. Super recomendo."</p>
+        <div class="flex items-center space-x-3">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Pedro Melo" class="w-10 h-10 rounded-full object-cover"/>
+          <div>
+            <p class="font-bold text-gray-900 text-sm">Pedro Melo</p>
+            <p class="text-gray-500 text-xs">Aluno</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl p-6 card-3d reveal" style="transition-delay:0.3s">
+        <p class="text-gray-600 text-sm mb-4 line-clamp-4">"Profissional excepcional e extremamente competente. Treinos adequados e coerentes à cada rotina e necessidade. Realmente um acompanhamento personalizado e presente. Super recomendo!"</p>
+        <div class="flex items-center space-x-3">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" alt="Morgana Garcia" class="w-10 h-10 rounded-full object-cover"/>
+          <div>
+            <p class="font-bold text-gray-900 text-sm">Morgana Garcia</p>
+            <p class="text-gray-500 text-xs">Aluna</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl p-6 card-3d reveal" style="transition-delay:0.45s">
+        <p class="text-gray-600 text-sm mb-4 line-clamp-4">"Ótimo profissional! Atenção total, parceria nos treinos. Séries muito bem elaboradas, com muita atenção à demanda. Contato frequente, sempre atento. Vale muito a pena!"</p>
+        <div class="flex items-center space-x-3">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face" alt="Bruno Clavijo" class="w-10 h-10 rounded-full object-cover"/>
+          <div>
+            <p class="font-bold text-gray-900 text-sm">Bruno Clavijo</p>
+            <p class="text-gray-500 text-xs">Aluno</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-black border-t border-gray-800 py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-3 gap-12">
+      <div class="space-y-6">
+        <div class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-lg">{{ $p.trainerInitials }}</span>
+          </div>
+          <div>
+            <p class="font-bold text-white leading-tight">{{ $p.trainerName }}</p>
+            <p class="text-xs text-gray-400">{{ $p.trainerTitle }}</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-orange-500 font-bold mb-2">Sobre mim</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Quero ajudar você a alcançar de forma definitiva os seus objetivos e mudar de vez a sua relação com seu corpo.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-orange-500 font-bold mb-4">Entre em contato</h3>
+          <div class="space-y-2">
+            <a href="{{ $p.whatsapp }}" target="_blank" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.867-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              <span>{{ $p.phone }}</span>
+            </a>
+            <a href="mailto:{{ $p.email }}" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span>{{ $p.email }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-orange-500 font-bold mb-4">Links úteis</h3>
+        <ul class="space-y-2">
+          <li><a href="#acompanhamento" class="text-gray-400 hover:text-white transition-colors text-sm">Acompanhamento presencial</a></li>
+          <li><a href="#como-funciona" class="text-gray-400 hover:text-white transition-colors text-sm">Como contratar</a></li>
+          <li><a href="#depoimentos" class="text-gray-400 hover:text-white transition-colors text-sm">Depoimentos</a></li>
+          <li><a href="#contratar" class="text-gray-400 hover:text-white transition-colors text-sm">Falar pelo WhatsApp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-orange-500 font-bold mb-4">Siga nas redes sociais</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-white hover:bg-orange-500 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-white hover:bg-orange-500 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+      <p class="text-gray-500 text-sm">© {{ now.Year }} {{ $p.trainerName }}. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+{{ end }}
